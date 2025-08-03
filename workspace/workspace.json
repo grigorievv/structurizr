@@ -1,28 +1,29 @@
 {
   "configuration" : { },
-  "description" : "MobBank",
+  "description" : "Description",
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-08-03T10:19:19Z",
+  "lastModifiedDate" : "2025-08-03T11:38:17Z",
   "model" : {
     "people" : [ {
+      "description" : "A user of the fintech platform",
       "id" : "1",
       "location" : "Unspecified",
-      "name" : "Actor",
+      "name" : "Customer",
       "properties" : {
-        "structurizr.dsl.identifier" : "u"
+        "structurizr.dsl.identifier" : "user"
       },
       "relationships" : [ {
-        "description" : "Uses",
+        "description" : "Authenticates / Logs in",
         "destinationId" : "2",
-        "id" : "5",
+        "id" : "10",
         "sourceId" : "1",
         "tags" : "Relationship"
       }, {
-        "description" : "Uses",
-        "destinationId" : "3",
-        "id" : "6",
+        "description" : "Initiates payments",
+        "destinationId" : "6",
+        "id" : "11",
         "sourceId" : "1",
         "tags" : "Relationship"
       } ],
@@ -30,50 +31,101 @@
     } ],
     "softwareSystems" : [ {
       "containers" : [ {
+        "description" : "Manages login, tokens, sessions",
         "documentation" : { },
         "id" : "3",
-        "name" : "WebApp-Front",
+        "name" : "Auth Service",
         "properties" : {
-          "structurizr.dsl.identifier" : "ss.wa"
+          "structurizr.dsl.identifier" : "authservice"
         },
         "relationships" : [ {
-          "description" : "Reads from and writes to",
+          "description" : "Stores session data",
           "destinationId" : "4",
-          "id" : "7",
+          "id" : "5",
           "sourceId" : "3",
           "tags" : "Relationship"
         } ],
-        "tags" : "Element,Container"
+        "tags" : "Element,Container",
+        "technology" : "Node.js + JWT"
       }, {
+        "description" : "Stores session data",
         "documentation" : { },
         "id" : "4",
-        "name" : "Database Schema",
+        "name" : "Session Cache",
         "properties" : {
-          "structurizr.dsl.identifier" : "ss.db"
+          "structurizr.dsl.identifier" : "sessioncache"
         },
-        "tags" : "Element,Container,Database"
+        "tags" : "Element,Container",
+        "technology" : "Redis"
       } ],
+      "description" : "Handles user authentication and authorization",
       "documentation" : { },
       "id" : "2",
       "location" : "Unspecified",
-      "name" : "Mobile Bank",
+      "name" : "Authorization System",
       "properties" : {
-        "structurizr.dsl.identifier" : "ss"
+        "structurizr.dsl.identifier" : "authsystem"
       },
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Processes payment requests",
+        "documentation" : { },
+        "id" : "7",
+        "name" : "Payment API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "paymentapi"
+        },
+        "relationships" : [ {
+          "description" : "Publishes payment events",
+          "destinationId" : "8",
+          "id" : "9",
+          "sourceId" : "7",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Java + Spring Boot"
+      }, {
+        "description" : "Publishes payment events",
+        "documentation" : { },
+        "id" : "8",
+        "name" : "Event Bus",
+        "properties" : {
+          "structurizr.dsl.identifier" : "eventbus"
+        },
+        "tags" : "Element,Container",
+        "technology" : "Apache Kafka"
+      } ],
+      "description" : "Handles payment processing",
+      "documentation" : { },
+      "id" : "6",
+      "location" : "Unspecified",
+      "name" : "Payments System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "paymentssystem"
+      },
+      "relationships" : [ {
+        "description" : "Validates session and permissions",
+        "destinationId" : "2",
+        "id" : "12",
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      } ],
       "tags" : "Element,Software System"
     } ]
   },
-  "name" : "MIB",
+  "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJNSUIiICJNb2JCYW5rIgoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgdSA9IHBlcnNvbiAiQWN0b3IiCiAgICAgICAgc3MgPSBzb2Z0d2FyZVN5c3RlbSAiTW9iaWxlIEJhbmsiIHsKICAgICAgICAgICAgd2EgPSBjb250YWluZXIgIldlYkFwcC1Gcm9udCIKICAgICAgICAgICAgZGIgPSBjb250YWluZXIgIkRhdGFiYXNlIFNjaGVtYSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIHUgLT4gc3MgIlVzZXMiCiAgICAgICAgdSAtPiBzcy53YSAiVXNlcyIKICAgICAgICBzcy53YSAtPiBzcy5kYiAiUmVhZHMgZnJvbSBhbmQgd3JpdGVzIHRvIgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IHNzICJEaWFncmFtMSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNzICJEaWFncmFtMiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgLy8gc3R5bGluZy4uLgogICAgfQoKfQ=="
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgbW9kZWwgewogICAgdXNlciA9IHBlcnNvbiAiQ3VzdG9tZXIiIHsKICAgICAgZGVzY3JpcHRpb24gIkEgdXNlciBvZiB0aGUgZmludGVjaCBwbGF0Zm9ybSIKICAgIH0KCiAgICBhdXRoU3lzdGVtID0gc29mdHdhcmVTeXN0ZW0gIkF1dGhvcml6YXRpb24gU3lzdGVtIiB7CiAgICAgIGRlc2NyaXB0aW9uICJIYW5kbGVzIHVzZXIgYXV0aGVudGljYXRpb24gYW5kIGF1dGhvcml6YXRpb24iCgogICAgICBhdXRoU2VydmljZSA9IGNvbnRhaW5lciAiQXV0aCBTZXJ2aWNlIiB7CiAgICAgICAgdGVjaG5vbG9neSAiTm9kZS5qcyArIEpXVCIKICAgICAgICBkZXNjcmlwdGlvbiAiTWFuYWdlcyBsb2dpbiwgdG9rZW5zLCBzZXNzaW9ucyIKICAgICAgfQoKICAgICAgc2Vzc2lvbkNhY2hlID0gY29udGFpbmVyICJTZXNzaW9uIENhY2hlIiB7CiAgICAgICAgdGVjaG5vbG9neSAiUmVkaXMiCiAgICAgICAgZGVzY3JpcHRpb24gIlN0b3JlcyBzZXNzaW9uIGRhdGEiCiAgICAgIH0KCiAgICAgIGF1dGhTZXJ2aWNlIC0+IHNlc3Npb25DYWNoZSAiU3RvcmVzIHNlc3Npb24gZGF0YSIKICAgIH0KCiAgICBwYXltZW50c1N5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJQYXltZW50cyBTeXN0ZW0iIHsKICAgICAgZGVzY3JpcHRpb24gIkhhbmRsZXMgcGF5bWVudCBwcm9jZXNzaW5nIgoKICAgICAgcGF5bWVudEFQSSA9IGNvbnRhaW5lciAiUGF5bWVudCBBUEkiIHsKICAgICAgICB0ZWNobm9sb2d5ICJKYXZhICsgU3ByaW5nIEJvb3QiCiAgICAgICAgZGVzY3JpcHRpb24gIlByb2Nlc3NlcyBwYXltZW50IHJlcXVlc3RzIgogICAgICB9CgogICAgICBldmVudEJ1cyA9IGNvbnRhaW5lciAiRXZlbnQgQnVzIiB7CiAgICAgICAgdGVjaG5vbG9neSAiQXBhY2hlIEthZmthIgogICAgICAgIGRlc2NyaXB0aW9uICJQdWJsaXNoZXMgcGF5bWVudCBldmVudHMiCiAgICAgIH0KCiAgICAgIHBheW1lbnRBUEkgLT4gZXZlbnRCdXMgIlB1Ymxpc2hlcyBwYXltZW50IGV2ZW50cyIKICAgIH0KCiAgICAvLyDQktC90LXRiNC90LjQtSDQstC30LDQuNC80L7QtNC10LnRgdGC0LLQuNGPCiAgICB1c2VyIC0+IGF1dGhTeXN0ZW0gIkF1dGhlbnRpY2F0ZXMgLyBMb2dzIGluIgogICAgdXNlciAtPiBwYXltZW50c1N5c3RlbSAiSW5pdGlhdGVzIHBheW1lbnRzIgogICAgcGF5bWVudHNTeXN0ZW0gLT4gYXV0aFN5c3RlbSAiVmFsaWRhdGVzIHNlc3Npb24gYW5kIHBlcm1pc3Npb25zIgogIH0KCiAgdmlld3MgewogICAgc3lzdGVtQ29udGV4dCBhdXRoU3lzdGVtIHsKICAgICAgaW5jbHVkZSBhdXRoU3lzdGVtCiAgICAgIGF1dG9sYXlvdXQgbHIKICAgIH0KCiAgICBzeXN0ZW1Db250ZXh0IHBheW1lbnRzU3lzdGVtIHsKICAgICAgaW5jbHVkZSBwYXltZW50c1N5c3RlbQogICAgICBhdXRvbGF5b3V0IGxyCiAgICB9CgogICAgY29udGFpbmVyIGF1dGhTeXN0ZW0gewogICAgICBpbmNsdWRlIGF1dGhTZXJ2aWNlCiAgICAgIGluY2x1ZGUgc2Vzc2lvbkNhY2hlCiAgICAgIGluY2x1ZGUgdXNlcgogICAgICBhdXRvbGF5b3V0IGxyCiAgICB9CgogICAgY29udGFpbmVyIHBheW1lbnRzU3lzdGVtIHsKICAgICAgaW5jbHVkZSBwYXltZW50QVBJCiAgICAgIGluY2x1ZGUgZXZlbnRCdXMKICAgICAgaW5jbHVkZSB1c2VyCiAgICAgIGF1dG9sYXlvdXQgbHIKICAgIH0KCiAgICB0aGVtZSBkZWZhdWx0CiAgfQp9"
   },
   "views" : {
     "configuration" : {
       "branding" : { },
-      "lastSavedView" : "Diagram2",
+      "lastSavedView" : "Container-001",
       "metadataSymbols" : "SquareBrackets",
       "styles" : { },
-      "terminology" : { }
+      "terminology" : { },
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ]
     },
     "containerViews" : [ {
       "automaticLayout" : {
@@ -86,35 +138,33 @@
         "vertices" : false
       },
       "dimensions" : {
-        "height" : 811,
-        "width" : 2370
+        "height" : 1420,
+        "width" : 1640
       },
       "elements" : [ {
         "id" : "1",
-        "x" : 199,
-        "y" : 185
+        "x" : 220,
+        "y" : 785
       }, {
         "id" : "3",
-        "x" : 949,
+        "x" : 220,
         "y" : 185
       }, {
         "id" : "4",
-        "x" : 1699,
+        "x" : 970,
         "y" : 185
       } ],
       "externalSoftwareSystemBoundariesVisible" : false,
-      "key" : "Diagram2",
-      "order" : 2,
+      "generatedKey" : true,
+      "key" : "Container-001",
+      "order" : 3,
       "relationships" : [ {
-        "id" : "6"
-      }, {
-        "id" : "7"
+        "id" : "5"
       } ],
       "softwareSystemId" : "2"
-    } ],
-    "systemContextViews" : [ {
+    }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -122,22 +172,80 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
+      "dimensions" : {
+        "height" : 1420,
+        "width" : 1640
+      },
       "elements" : [ {
         "id" : "1",
-        "x" : 0,
-        "y" : 0
+        "x" : 220,
+        "y" : 785
       }, {
+        "id" : "7",
+        "x" : 220,
+        "y" : 185
+      }, {
+        "id" : "8",
+        "x" : 970,
+        "y" : 185
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Container-002",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "9"
+      } ],
+      "softwareSystemId" : "6"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 700,
+        "width" : 850
+      },
+      "elements" : [ {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 165
       } ],
       "enterpriseBoundaryVisible" : true,
-      "key" : "Diagram1",
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
       "order" : 1,
-      "relationships" : [ {
-        "id" : "5"
-      } ],
       "softwareSystemId" : "2"
+    }, {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 700,
+        "width" : 850
+      },
+      "elements" : [ {
+        "id" : "6",
+        "x" : 200,
+        "y" : 165
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-002",
+      "order" : 2,
+      "softwareSystemId" : "6"
     } ]
   }
 }
