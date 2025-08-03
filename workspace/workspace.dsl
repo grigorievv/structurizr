@@ -1,7 +1,7 @@
 workspace "MIB" "MobBank"
 
     !identifiers hierarchical
-
+fgjhhfgjhfghfjg
     model {
         u = person "Actor"
         ss = softwareSystem "Mobile Bank" {

@@ -4,7 +4,7 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-08-03T07:25:36Z",
+  "lastModifiedDate" : "2025-08-03T10:19:19Z",
   "model" : {
     "people" : [ {
       "id" : "1",
@@ -32,7 +32,7 @@
       "containers" : [ {
         "documentation" : { },
         "id" : "3",
-        "name" : "Web Application",
+        "name" : "WebApp-Front",
         "properties" : {
           "structurizr.dsl.identifier" : "ss.wa"
         },
@@ -65,7 +65,7 @@
   },
   "name" : "MIB",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJNSUIiICJNb2JCYW5rIgoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgdSA9IHBlcnNvbiAiQWN0b3IiCiAgICAgICAgc3MgPSBzb2Z0d2FyZVN5c3RlbSAiTW9iaWxlIEJhbmsiIHsKICAgICAgICAgICAgd2EgPSBjb250YWluZXIgIldlYiBBcHBsaWNhdGlvbiIKICAgICAgICAgICAgZGIgPSBjb250YWluZXIgIkRhdGFiYXNlIFNjaGVtYSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIHUgLT4gc3MgIlVzZXMiCiAgICAgICAgdSAtPiBzcy53YSAiVXNlcyIKICAgICAgICBzcy53YSAtPiBzcy5kYiAiUmVhZHMgZnJvbSBhbmQgd3JpdGVzIHRvIgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IHNzICJEaWFncmFtMSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNzICJEaWFncmFtMiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgLy8gc3R5bGluZy4uLgogICAgfQoKfQ=="
+    "structurizr.dsl" : "d29ya3NwYWNlICJNSUIiICJNb2JCYW5rIgoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgdSA9IHBlcnNvbiAiQWN0b3IiCiAgICAgICAgc3MgPSBzb2Z0d2FyZVN5c3RlbSAiTW9iaWxlIEJhbmsiIHsKICAgICAgICAgICAgd2EgPSBjb250YWluZXIgIldlYkFwcC1Gcm9udCIKICAgICAgICAgICAgZGIgPSBjb250YWluZXIgIkRhdGFiYXNlIFNjaGVtYSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIHUgLT4gc3MgIlVzZXMiCiAgICAgICAgdSAtPiBzcy53YSAiVXNlcyIKICAgICAgICBzcy53YSAtPiBzcy5kYiAiUmVhZHMgZnJvbSBhbmQgd3JpdGVzIHRvIgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IHNzICJEaWFncmFtMSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNzICJEaWFncmFtMiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgLy8gc3R5bGluZy4uLgogICAgfQoKfQ=="
   },
   "views" : {
     "configuration" : {
@@ -114,7 +114,7 @@
     } ],
     "systemContextViews" : [ {
       "automaticLayout" : {
-        "applied" : true,
+        "applied" : false,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -122,18 +122,14 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "dimensions" : {
-        "height" : 700,
-        "width" : 1600
-      },
       "elements" : [ {
         "id" : "1",
-        "x" : 199,
-        "y" : 165
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "2",
-        "x" : 949,
-        "y" : 165
+        "x" : 0,
+        "y" : 0
       } ],
       "enterpriseBoundaryVisible" : true,
       "key" : "Diagram1",

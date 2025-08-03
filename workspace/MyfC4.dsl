@@ -1,5 +1,13 @@
-workspace {
+workspace "Name" "Description" {
 
+    model {
+        u = person "User"
+        ss = softwareSystem "Software System"
+
+        u -> ss "Uses"
+    }
+    
+}
   model {
     user = person "Пользователь"
     softwareSystem = softwareSystem "Банковское приложение" {
