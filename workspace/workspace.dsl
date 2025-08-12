@@ -1,73 +1,51 @@
-workspace {
 
-  model {
-    user = person "Customer" {
-      description "A user of the fintech platform"
+workspace "Name" "Description" {
+    
+    !identifiers hierarchical
+
+    model {
+        u = person "User"
+        ss = softwareSystem "Software System" {
+            wa = container "Web Application" {
+                ca = component "Authentication Controller" "Handles login and authentication"
+                cd = component "Data Service" "Provides data access and business logic"
+                cv = component "View Renderer" "Generates HTML/JSON responses"
+            }
+            db = container "Database Schema" {
+                tags "Database"
+            }
+        }
+
+        // Связи
+        u -> ss "Uses"
+        u -> ss.wa "Uses"
+        ss.wa -> ss.db "Reads from and writes to"
+        
+        // Внутренние связи между компонентами
+        u -> ss.wa.ca "Logs in via"
+        ss.wa.ca -> ss.wa.cd "Validates and requests data"
+        ss.wa.cd -> ss.db "Queries and updates"
+        ss.wa.cd -> ss.wa.cv "Sends data for rendering"
     }
 
-    authSystem = softwareSystem "Authorization System" {
-      description "Handles user authentication and authorization"
+    views {
+        // System Context
+        systemContext ss "Diagram1" {
+            include *
+            autolayout lr
+        }  :
 
-      authService = container "Auth Service" {
-        technology "Node.js + JWT"
-        description "Manages login, tokens, sessions"
-      }
+        // Container
+        container ss "Diagram2" {
+            include *
+            autolayout lr
+        }
 
-      sessionCache = container "Session Cache" {
-        technology "Redis"
-        description "Stores session data"
-      }
-
-      authService -> sessionCache "Stores session data"
+        // Component (для Web Application)
+        component ss.wa "Diagram3" {
+            include *
+            autolayout lr
+        }
     }
-
-    paymentsSystem = softwareSystem "Payments System" {
-      description "Handles payment processing"
-
-      paymentAPI = container "Payment API" {
-        technology "Java + Spring Boot"
-        description "Processes payment requests"
-      }
-
-      eventBus = container "Event Bus" {
-        technology "Apache Kafka"
-        description "Publishes payment events"
-      }
-
-      paymentAPI -> eventBus "Publishes payment events"
-    }
-
-    // Внешние взаимодействия
-    user -> authSystem "Authenticates / Logs in"
-    user -> paymentsSystem "Initiates payments"
-    paymentsSystem -> authSystem "Validates session and permissions"
-  }
-
-  views {
-    systemContext authSystem {
-      include authSystem
-      autolayout lr
-    }
-
-    systemContext paymentsSystem {
-      include paymentsSystem
-      autolayout lr
-    }
-
-    container authSystem {
-      include authService
-      include sessionCache
-      include user
-      autolayout lr
-    }
-
-    container paymentsSystem {
-      include paymentAPI
-      include eventBus
-      include user
-      autolayout lr
-    }
-
-    theme default
-  }
 }
+
