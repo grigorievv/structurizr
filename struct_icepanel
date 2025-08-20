@@ -1,0 +1,171 @@
+
+{
+  "id": 1,
+  "model": {
+    "enterprise": {
+      "name": "Vlad's landscape"
+    },
+    "people": [
+      {
+        "id": "WUYheS8ReqtztVaRetyS",
+        "location": "Internal",
+        "name": "Customer",
+        "relationships": [
+          {
+            "description": "listProducts",
+            "destinationId": "JB6LRITXSYy3x5tQgncV",
+            "id": "Y76HleSIDWqaw3208HmU",
+            "interactionStyle": "Synchronous",
+            "sourceId": "WUYheS8ReqtztVaRetyS"
+          }
+        ]
+      }
+    ],
+    "softwareSystems": [
+      {
+        "id": "a2aoroQXVWpP1D6ZVlYG",
+        "location": "Internal",
+        "name": "5NT",
+        "relationships": [],
+        "containers": []
+      },
+      {
+        "description": "Delivers value to our customers",
+        "id": "72EQVjFQQhkJ2MxMqBJD",
+        "location": "Internal",
+        "name": "Conveyor",
+        "relationships": [],
+        "containers": [
+          {
+            "id": "JB6LRITXSYy3x5tQgncV",
+            "name": "API1",
+            "relationships": [],
+            "components": []
+          },
+          {
+            "id": "Mc4Zn6f8q5IeAqnuDPeS",
+            "name": "OKS-Conveyor",
+            "relationships": [
+              {
+                "description": "Sends application to ABS",
+                "destinationId": "a2aoroQXVWpP1D6ZVlYG",
+                "id": "FvhW1WbMLL6aikJpkx4v",
+                "interactionStyle": "Synchronous",
+                "sourceId": "Mc4Zn6f8q5IeAqnuDPeS",
+                "tags": "HTTPS"
+              }
+            ],
+            "components": []
+          },
+          {
+            "id": "OM65xZGakxhTDEL4neZL",
+            "name": "PostgreSQL",
+            "relationships": [
+              {
+                "description": "Products_data",
+                "destinationId": "Mc4Zn6f8q5IeAqnuDPeS",
+                "id": "SxjqsMRMIoXKazB08C1R",
+                "interactionStyle": "Synchronous",
+                "sourceId": "OM65xZGakxhTDEL4neZL",
+                "tags": "JSON"
+              }
+            ],
+            "components": []
+          }
+        ]
+      },
+      {
+        "description": "An external service we rely on",
+        "id": "rYoSgqZQK70BH93c65LZ",
+        "location": "External",
+        "name": "SCP-system",
+        "relationships": [
+          {
+            "description": "request for client data",
+            "destinationId": "JB6LRITXSYy3x5tQgncV",
+            "id": "Y5dUENPelKWdTQoty7JO",
+            "interactionStyle": "Synchronous",
+            "sourceId": "rYoSgqZQK70BH93c65LZ",
+            "tags": "HTTPS"
+          }
+        ],
+        "containers": []
+      }
+    ]
+  },
+  "name": "Vlad's landscape",
+  "views": {
+    "componentViews": [],
+    "containerViews": [
+      {
+        "automaticLayout": {
+          "implementation": "Dagre"
+        },
+        "elements": [
+          {
+            "id": "OM65xZGakxhTDEL4neZL"
+          },
+          {
+            "id": "72EQVjFQQhkJ2MxMqBJD"
+          },
+          {
+            "id": "WUYheS8ReqtztVaRetyS"
+          },
+          {
+            "id": "JB6LRITXSYy3x5tQgncV"
+          },
+          {
+            "id": "Mc4Zn6f8q5IeAqnuDPeS"
+          },
+          {
+            "id": "rYoSgqZQK70BH93c65LZ"
+          },
+          {
+            "id": "a2aoroQXVWpP1D6ZVlYG"
+          }
+        ],
+        "key": "n5YcgE3AHW",
+        "relationships": [
+          {
+            "id": "FvhW1WbMLL6aikJpkx4v"
+          },
+          {
+            "id": "Y5dUENPelKWdTQoty7JO"
+          },
+          {
+            "id": "Y76HleSIDWqaw3208HmU"
+          },
+          {
+            "id": "SxjqsMRMIoXKazB08C1R"
+          }
+        ],
+        "softwareSystemId": "72EQVjFQQhkJ2MxMqBJD",
+        "title": "Conveyor Diagram 1"
+      }
+    ],
+    "systemLandscapeViews": [
+      {
+        "automaticLayout": {
+          "implementation": "Dagre"
+        },
+        "elements": [
+          {
+            "id": "rYoSgqZQK70BH93c65LZ"
+          },
+          {
+            "id": "72EQVjFQQhkJ2MxMqBJD"
+          },
+          {
+            "id": "a2aoroQXVWpP1D6ZVlYG"
+          },
+          {
+            "id": "WUYheS8ReqtztVaRetyS"
+          }
+        ],
+        "key": "KyKsbRcGT4",
+        "relationships": [],
+        "title": "Diagram 1"
+      }
+    ]
+  }
+}
